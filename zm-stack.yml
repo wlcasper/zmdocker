@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  zm:
+    image: zoneminderhq/zoneminder:latest-ubuntu18.04
+    volumes:
+      - zmdbvol:/var/lib/mysql
+      - zmlogvol:/var/log/zm
+      - zmevent:/var/cache/zoneminder
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 512000000
+    environment:
+      TZ: 'America/Los_Angeles'
+    ports:
+      - 2080:80
+    deploy:
+      replicas: 1
+
+volumes:
+  zmdbvol:
+    driver: local
+    driver_opts:
+      type: "nfs4"
+      o: "addr=192.168.2.8,rw"
+      device: ":/zm/mysql"
+  zmlogvol:
+    driver: local
+    driver_opts:
+      type: "nfs4"
+      o: "addr=192.168.2.8,rw"
+      device: ":/zm/log"
+  zmevent:
+    driver: local
+    driver_opts:
+      type: "nfs4"
+      o: "addr=192.168.2.7,rw"
+      device: ":/media/zoneminder"
