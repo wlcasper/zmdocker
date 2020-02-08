@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   zm:
-    image: netcasper/zoneminder:latest
+    image: netcasper/zoneminder:latest-ubuntu18.04
     volumes:
       - zmdbvol:/var/lib/mysql
       - zmlogvol:/var/log/zm
