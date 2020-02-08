@@ -1,2 +1,2 @@
-10 6 * * * root docker exec zm.1.$(docker service ps -f 'name=zm.1' zm -q --no-trunc | head -n1) /usr/bin/zmpkg.pl Daytime >/dev/null 2>&1
-30 18 * * * root docker exec zm.1.$(docker service ps -f 'name=zm.1' zm -q --no-trunc | head -n1) /usr/bin/zmpkg.pl Nighttime >/dev/null 2>&1
+10 6 * * * root docker exec zoneminder_zm.1.$(docker stack ps -f 'name=zoneminder_zm.1' zoneminder -q --no-trunc | head -n1) /usr/bin/zmpkg.pl Daytime >/opt/zm.log 2>&1
+30 18 * * * root docker exec zoneminder_zm.1.$(docker stack ps -f 'name=zoneminder_zm.1' zoneminder -q --no-trunc | head -n1) /usr/bin/zmpkg.pl Nighttime >/dev/null 2>&1
