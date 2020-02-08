@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   zm:
-    image: zoneminderhq/zoneminder:latest-ubuntu18.04
+    image: netcasper/zoneminder:latest
     volumes:
       - zmdbvol:/var/lib/mysql
       - zmlogvol:/var/log/zm
@@ -23,17 +23,17 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs4"
-      o: "addr=192.168.2.8,rw"
+      o: "addr=${ZM_NFS_SERVER},rw"
       device: ":/zm/mysql"
   zmlogvol:
     driver: local
     driver_opts:
       type: "nfs4"
-      o: "addr=192.168.2.8,rw"
+      o: "addr=${ZM_NFS_SERVER},rw"
       device: ":/zm/log"
   zmevent:
     driver: local
     driver_opts:
       type: "nfs4"
-      o: "addr=192.168.2.7,rw"
+      o: "addr=${EVENT_NFS_SERVER},rw"
       device: ":/media/zoneminder"
