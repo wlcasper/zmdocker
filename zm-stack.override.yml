@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  zm:
+    volumes:
+      - /home/liang/docker-vol/zoneminder/mysql:/var/lib/mysql
+      - /home/liang/docker-vol/zoneminder/logs:/var/log/zm
+      - /media/zoneminder:/var/cache/zoneminder
+    ports:
+      - 1080:80
