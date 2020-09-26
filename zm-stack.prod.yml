@@ -6,6 +6,7 @@ services:
       - zmdbvol:/var/lib/mysql
       - zmlogvol:/var/log/zm
       - zmevent:/var/cache/zoneminder
+      - /media/zoneminder2:/var/cache/zoneminder2
     ports:
       - 2080:80
 
@@ -28,3 +29,9 @@ volumes:
       type: "nfs4"
       o: "addr=${EVENT_NFS_SERVER},rw"
       device: ":/media/zoneminder"
+  # zmevent2:
+  #   driver: local
+  #   driver_opts:
+  #     type: "nfs4"
+  #     o: "addr=${EVENT_NFS_SERVER},rw"
+  #     device: ":/media/zoneminder2"
