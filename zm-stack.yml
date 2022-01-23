@@ -2,12 +2,12 @@ version: '3.7'
 
 services:
   zm:
-    image: netcasper/zoneminder:v1.34-ubuntu18.04
+    image: netcasper/zoneminder:v1.36.12-ubuntu18.04
     volumes:
       - type: tmpfs
         target: /dev/shm
         tmpfs:
-          size: 512000000
+          size: 1024000000
     environment:
       TZ: 'America/Los_Angeles'
     deploy:
