@@ -10,6 +10,7 @@ RUN apt install --assume-yes --no-install-recommends gnupg
 # Configure Zoneminder PPA
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABE4C7F993453843F0AEB8154D0BF748776FFB04 \
     && echo deb http://ppa.launchpad.net/iconnor/zoneminder-1.36/ubuntu bionic main > /etc/apt/sources.list.d/zoneminder.list \
+    && apt-get clean \
     && apt update
 
 # Install zoneminder
@@ -17,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install --assume-yes zoneminder \
     && a2enconf zoneminder \
     && a2enmod rewrite cgi
 
-RUN mkdir -p /run/zm
+RUN mkdir -p /run/zm && chown -R www-data.www-data /run/zm
 
 # Setup Volumes
 VOLUME /var/cache/zoneminder /var/lib/mysql /var/log/zm
